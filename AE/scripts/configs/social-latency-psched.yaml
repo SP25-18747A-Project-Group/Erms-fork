@@ -1,0 +1,22 @@
+services:
+- ComposePost
+- UserTimeline
+- HomeTimeline
+
+interferences:
+  # Units: core
+  cpu: 0.4
+  # Units: MiB
+  mem: 800
+
+# Units: requests per min
+workloads:
+  ComposePost: 100
+  UserTimeline: 100
+  HomeTimeline: 100
+
+# Units: ms
+slas:
+  ComposePost:  200
+  UserTimeline: 200
+  HomeTimeline: 200

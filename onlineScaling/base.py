@@ -27,7 +27,7 @@ class LatencyTargetComputation:
         # To fix 1 will be read as 1.0
         relation_df = relation_df.astype({"tag": "str"})
         relation_df["tag"] = relation_df["tag"].str.replace(
-            r"^(\d+).0", lambda x: x.group(1)
+            r"^(\d+).0", lambda x: x.group(1), regex=True
         )
         root_spans: Dict[str, Span] = {}
         for service in relation_df["service"].unique().tolist():
