@@ -228,22 +228,7 @@
         {
             "name": "compose-post-service",
             "namespace": "socialnetwork",
-            "replicas": 1,
-            "resources": {
-                "requests": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
-                },
-                "limits": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
-                }
-            }
-        },
-        {
-            "name": "home-timeline-service",
-            "namespace": "socialnetwork",
-            "replicas": 3,
+            "replicas": 11,
             "resources": {
                 "requests": {
                     "cpu": "2",
@@ -288,7 +273,7 @@
         {
             "name": "post-storage-service",
             "namespace": "socialnetwork",
-            "replicas": 32,
+            "replicas": 1,
             "resources": {
                 "requests": {
                     "cpu": "2",
@@ -318,7 +303,7 @@
         {
             "name": "text-service",
             "namespace": "socialnetwork",
-            "replicas": 6,
+            "replicas": 11,
             "resources": {
                 "requests": {
                     "cpu": "2",
@@ -348,7 +333,7 @@
         {
             "name": "url-shorten-service",
             "namespace": "socialnetwork",
-            "replicas": 3,
+            "replicas": 4,
             "resources": {
                 "requests": {
                     "cpu": "2",
@@ -363,7 +348,7 @@
         {
             "name": "user-mention-service",
             "namespace": "socialnetwork",
-            "replicas": 3,
+            "replicas": 4,
             "resources": {
                 "requests": {
                     "cpu": "2",
@@ -393,7 +378,7 @@
         {
             "name": "user-timeline-service",
             "namespace": "socialnetwork",
-            "replicas": 48,
+            "replicas": 1,
             "resources": {
                 "requests": {
                     "cpu": "2",
