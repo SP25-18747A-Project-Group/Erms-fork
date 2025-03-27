@@ -1,7 +1,7 @@
 services:
-- ComposePost
-- UserTimeline
-- HomeTimeline
+  - ComposePost
+  - UserTimeline
+  - HomeTimeline
 
 interferences:
   # Units: core
@@ -11,12 +11,12 @@ interferences:
 
 # Units: requests per min
 workloads:
-  ComposePost: 100
-  UserTimeline: 100
-  HomeTimeline: 100
+  ComposePost: 700
+  UserTimeline: 700
+  HomeTimeline: 700
 
 # Units: ms
 slas:
-  ComposePost:  200
+  ComposePost: 200
   UserTimeline: 200
   HomeTimeline: 200

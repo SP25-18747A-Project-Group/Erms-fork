@@ -17,7 +17,7 @@ class ErmsScheduler:
         self.result_path = f"{data_path}/onlineSchedulingResult"
         os.system(f"rm -rf {self.result_path}")
         os.system(f"mkdir -p {self.result_path}")
-        config.load_kube_config()
+        # config.load_kube_config()
 
     def _fake_data(self):
         ms_num = np.random.randint(10, 20)

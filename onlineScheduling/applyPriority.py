@@ -2,7 +2,7 @@ import os
 import pandas as pd
 from kubernetes import client, config
 
-config.kube_config.load_kube_config()
+# config.kube_config.load_kube_config()
 
 
 def apply_priority(namespace, data_path, latency_target_df=None):

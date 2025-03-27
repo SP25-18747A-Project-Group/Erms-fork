@@ -138,7 +138,7 @@ class Deployer:
             pass
 
 
-config.load_kube_config()
+# config.load_kube_config()     
 
 
 def deploy_by_yaml(folder, wait=False, namespace=None, timeout=300):
