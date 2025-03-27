@@ -11,9 +11,9 @@ interferences:
 
 # Units: requests per min
 workloads:
-  ComposePost: 700
-  UserTimeline: 700
-  HomeTimeline: 700
+  ComposePost: !QPS!
+  UserTimeline: !QPS!
+  HomeTimeline: !QPS!
 
 # Units: ms
 slas:

@@ -1,0 +1,424 @@
+{
+    "deployments": [
+        {
+            "name": "home-timeline-redis",
+            "namespace": "socialnetwork",
+            "replicas": 1,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "media-frontend",
+            "namespace": "socialnetwork",
+            "replicas": 1,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "media-memcached",
+            "namespace": "socialnetwork",
+            "replicas": 1,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "media-mongodb",
+            "namespace": "socialnetwork",
+            "replicas": 1,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "nginx-thrift",
+            "namespace": "socialnetwork",
+            "replicas": 1,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "post-storage-memcached",
+            "namespace": "socialnetwork",
+            "replicas": 1,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "post-storage-mongodb",
+            "namespace": "socialnetwork",
+            "replicas": 1,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "social-graph-mongodb",
+            "namespace": "socialnetwork",
+            "replicas": 1,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "social-graph-redis",
+            "namespace": "socialnetwork",
+            "replicas": 1,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "url-shorten-memcached",
+            "namespace": "socialnetwork",
+            "replicas": 1,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "url-shorten-mongodb",
+            "namespace": "socialnetwork",
+            "replicas": 1,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "user-memcached",
+            "namespace": "socialnetwork",
+            "replicas": 1,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "user-mongodb",
+            "namespace": "socialnetwork",
+            "replicas": 1,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "user-timeline-mongodb",
+            "namespace": "socialnetwork",
+            "replicas": 1,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "user-timeline-redis",
+            "namespace": "socialnetwork",
+            "replicas": 1,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "compose-post-service",
+            "namespace": "socialnetwork",
+            "replicas": 2,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "home-timeline-service",
+            "namespace": "socialnetwork",
+            "replicas": 4,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "media-service",
+            "namespace": "socialnetwork",
+            "replicas": 1,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "nginx-web-server",
+            "namespace": "socialnetwork",
+            "replicas": 1,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "post-storage-service",
+            "namespace": "socialnetwork",
+            "replicas": 43,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "social-graph-service",
+            "namespace": "socialnetwork",
+            "replicas": 1,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "text-service",
+            "namespace": "socialnetwork",
+            "replicas": 8,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "unique-id-service",
+            "namespace": "socialnetwork",
+            "replicas": 1,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "url-shorten-service",
+            "namespace": "socialnetwork",
+            "replicas": 4,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "user-mention-service",
+            "namespace": "socialnetwork",
+            "replicas": 3,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "user-service",
+            "namespace": "socialnetwork",
+            "replicas": 1,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "user-timeline-service",
+            "namespace": "socialnetwork",
+            "replicas": 64,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        },
+        {
+            "name": "write-home-timeline-service",
+            "namespace": "socialnetwork",
+            "replicas": 2,
+            "resources": {
+                "requests": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                },
+                "limits": {
+                    "cpu": "2",
+                    "memory": "2.0Gi"
+                }
+            }
+        }
+    ]
+}
