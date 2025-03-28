@@ -161,6 +161,6 @@ if __name__ == "__main__":
                 k8s_json["deployments"].append(new_dict)
 
             # write the json file to k8s.json
-            with open(f"ERMS_Output_Configs/erms_{qps}_config.json", "w") as f:
+            with open(f"ERMS_Output_Configs/load_{qps}_config.json", "w") as f:
                 f.write(json.dumps(k8s_json, indent=4))
-
+    
