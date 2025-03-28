@@ -228,15 +228,30 @@
         {
             "name": "compose-post-service",
             "namespace": "socialnetwork",
-            "replicas": 11,
+            "replicas": 35,
             "resources": {
                 "requests": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 },
                 "limits": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
+                }
+            }
+        },
+        {
+            "name": "home-timeline-service",
+            "namespace": "socialnetwork",
+            "replicas": 2,
+            "resources": {
+                "requests": {
+                    "cpu": "0.1",
+                    "memory": "200Mi"
+                },
+                "limits": {
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 }
             }
         },
@@ -246,12 +261,12 @@
             "replicas": 1,
             "resources": {
                 "requests": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 },
                 "limits": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 }
             }
         },
@@ -261,12 +276,12 @@
             "replicas": 1,
             "resources": {
                 "requests": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 },
                 "limits": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 }
             }
         },
@@ -276,12 +291,12 @@
             "replicas": 1,
             "resources": {
                 "requests": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 },
                 "limits": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 }
             }
         },
@@ -291,27 +306,27 @@
             "replicas": 1,
             "resources": {
                 "requests": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 },
                 "limits": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 }
             }
         },
         {
             "name": "text-service",
             "namespace": "socialnetwork",
-            "replicas": 11,
+            "replicas": 27,
             "resources": {
                 "requests": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 },
                 "limits": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 }
             }
         },
@@ -321,42 +336,42 @@
             "replicas": 1,
             "resources": {
                 "requests": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 },
                 "limits": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 }
             }
         },
         {
             "name": "url-shorten-service",
             "namespace": "socialnetwork",
-            "replicas": 4,
+            "replicas": 12,
             "resources": {
                 "requests": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 },
                 "limits": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 }
             }
         },
         {
             "name": "user-mention-service",
             "namespace": "socialnetwork",
-            "replicas": 4,
+            "replicas": 11,
             "resources": {
                 "requests": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 },
                 "limits": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 }
             }
         },
@@ -366,12 +381,12 @@
             "replicas": 1,
             "resources": {
                 "requests": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 },
                 "limits": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 }
             }
         },
@@ -381,27 +396,12 @@
             "replicas": 1,
             "resources": {
                 "requests": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 },
                 "limits": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
-                }
-            }
-        },
-        {
-            "name": "write-home-timeline-service",
-            "namespace": "socialnetwork",
-            "replicas": 1,
-            "resources": {
-                "requests": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
-                },
-                "limits": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 }
             }
         }

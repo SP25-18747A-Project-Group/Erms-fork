@@ -13,17 +13,18 @@ workloads:
 
 # Units: ms
 slas:
-  ComposePost: 1250
+  ComposePost: 200
 
 
 pod_spec:
-  cpu_size: 2.0
-  mem_size: 2000Mi
+  cpu_size: 0.1
+  mem_size: 200Mi
 
 nodes:
-- node_1
-- node_2
-- node_3
+  - node_1
+  - node_2
+  - node_3
+  - node_4
 
 parts: 2
 
@@ -43,6 +44,13 @@ cluster_status:
     CPU_cap: 40
     mem_cap: 160000
   - node: "node_3"
+    CPU_used: 0
+    mem_used: 0
+    CPU_aloc: 0
+    mem_aloc: 0
+    CPU_cap: 40
+    mem_cap: 160000
+  - node: "node_4"
     CPU_used: 0
     mem_used: 0
     CPU_aloc: 0

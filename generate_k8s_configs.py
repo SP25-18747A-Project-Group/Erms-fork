@@ -91,6 +91,9 @@ def run_shell_commands():
         row = ",".join(row)
         # drop elements 0 and 2
         row = row.split(",")
+        if row[1] == 'write-home-timeline-service':
+            row[1] = 'home-timeline-service'
+
         row = [row[1], int(row[3])]
         # append to dataframe
         df = pd.concat(
@@ -131,6 +134,7 @@ if __name__ == "__main__":
                 try_again = True
                 current_qps = qps
                 sla += 50
+                print("New SLA:", sla)
                 break
 
             print(ms_replicas)
@@ -149,8 +153,8 @@ if __name__ == "__main__":
                     "namespace": "socialnetwork",
                     "replicas": int(row["replicas"]),
                     "resources": {
-                        "requests": {"cpu": "2", "memory": "2.0Gi"},
-                        "limits": {"cpu": "2", "memory": "2.0Gi"},
+                        "requests": {"cpu": "0.1", "memory": "200Mi"},
+                        "limits": {"cpu": "0.1", "memory": "200Mi"},
                     },
                 }
                 # append the dict to the deployments key

@@ -231,12 +231,27 @@
             "replicas": 4,
             "resources": {
                 "requests": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 },
                 "limits": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
+                }
+            }
+        },
+        {
+            "name": "home-timeline-service",
+            "namespace": "socialnetwork",
+            "replicas": 1,
+            "resources": {
+                "requests": {
+                    "cpu": "0.1",
+                    "memory": "200Mi"
+                },
+                "limits": {
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 }
             }
         },
@@ -246,12 +261,12 @@
             "replicas": 1,
             "resources": {
                 "requests": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 },
                 "limits": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 }
             }
         },
@@ -261,12 +276,12 @@
             "replicas": 1,
             "resources": {
                 "requests": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 },
                 "limits": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 }
             }
         },
@@ -276,12 +291,12 @@
             "replicas": 1,
             "resources": {
                 "requests": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 },
                 "limits": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 }
             }
         },
@@ -291,12 +306,12 @@
             "replicas": 1,
             "resources": {
                 "requests": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 },
                 "limits": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 }
             }
         },
@@ -306,12 +321,12 @@
             "replicas": 3,
             "resources": {
                 "requests": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 },
                 "limits": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 }
             }
         },
@@ -321,12 +336,12 @@
             "replicas": 1,
             "resources": {
                 "requests": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 },
                 "limits": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 }
             }
         },
@@ -336,12 +351,12 @@
             "replicas": 2,
             "resources": {
                 "requests": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 },
                 "limits": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 }
             }
         },
@@ -351,12 +366,12 @@
             "replicas": 2,
             "resources": {
                 "requests": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 },
                 "limits": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 }
             }
         },
@@ -366,12 +381,12 @@
             "replicas": 1,
             "resources": {
                 "requests": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 },
                 "limits": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 }
             }
         },
@@ -381,27 +396,12 @@
             "replicas": 1,
             "resources": {
                 "requests": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 },
                 "limits": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
-                }
-            }
-        },
-        {
-            "name": "write-home-timeline-service",
-            "namespace": "socialnetwork",
-            "replicas": 1,
-            "resources": {
-                "requests": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
-                },
-                "limits": {
-                    "cpu": "2",
-                    "memory": "2.0Gi"
+                    "cpu": "0.1",
+                    "memory": "200Mi"
                 }
             }
         }
