@@ -151,10 +151,10 @@ if __name__ == "__main__":
                 new_dict = {
                     "name": row["microservice"],
                     "namespace": "socialnetwork",
-                    "replicas": int(row["replicas"]),
+                    "replicas": max(1, int(row["replicas"] / 4)),
                     "resources": {
-                        "requests": {"cpu": "0.1", "memory": "200Mi"},
-                        "limits": {"cpu": "0.1", "memory": "200Mi"},
+                        "requests": {"cpu": "2", "memory": "2Gi"},
+                        "limits": {"cpu": "2", "memory": "2Gi"},
                     },
                 }
                 # append the dict to the deployments key
@@ -164,3 +164,10 @@ if __name__ == "__main__":
             with open(f"ERMS_Output_Configs/load_{qps}_config.json", "w") as f:
                 f.write(json.dumps(k8s_json, indent=4))
     
+
+
+
+# TODO:
+# [] First one is just scaling down the replica counts to fit on the cluster (ie. div number by 4 floor to 1 or something)
+# [] Figure out how to take the traces from HPA / Hand Placed and turn that into resources for the dependency merge
+#    [] 

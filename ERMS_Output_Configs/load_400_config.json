@@ -228,15 +228,15 @@
         {
             "name": "compose-post-service",
             "namespace": "socialnetwork",
-            "replicas": 21,
+            "replicas": 5,
             "resources": {
                 "requests": {
-                    "cpu": "0.1",
-                    "memory": "200Mi"
+                    "cpu": "2",
+                    "memory": "2Gi"
                 },
                 "limits": {
-                    "cpu": "0.1",
-                    "memory": "200Mi"
+                    "cpu": "2",
+                    "memory": "2Gi"
                 }
             }
         },
@@ -246,12 +246,12 @@
             "replicas": 1,
             "resources": {
                 "requests": {
-                    "cpu": "0.1",
-                    "memory": "200Mi"
+                    "cpu": "2",
+                    "memory": "2Gi"
                 },
                 "limits": {
-                    "cpu": "0.1",
-                    "memory": "200Mi"
+                    "cpu": "2",
+                    "memory": "2Gi"
                 }
             }
         },
@@ -261,12 +261,12 @@
             "replicas": 1,
             "resources": {
                 "requests": {
-                    "cpu": "0.1",
-                    "memory": "200Mi"
+                    "cpu": "2",
+                    "memory": "2Gi"
                 },
                 "limits": {
-                    "cpu": "0.1",
-                    "memory": "200Mi"
+                    "cpu": "2",
+                    "memory": "2Gi"
                 }
             }
         },
@@ -276,12 +276,12 @@
             "replicas": 1,
             "resources": {
                 "requests": {
-                    "cpu": "0.1",
-                    "memory": "200Mi"
+                    "cpu": "2",
+                    "memory": "2Gi"
                 },
                 "limits": {
-                    "cpu": "0.1",
-                    "memory": "200Mi"
+                    "cpu": "2",
+                    "memory": "2Gi"
                 }
             }
         },
@@ -291,12 +291,12 @@
             "replicas": 1,
             "resources": {
                 "requests": {
-                    "cpu": "0.1",
-                    "memory": "200Mi"
+                    "cpu": "2",
+                    "memory": "2Gi"
                 },
                 "limits": {
-                    "cpu": "0.1",
-                    "memory": "200Mi"
+                    "cpu": "2",
+                    "memory": "2Gi"
                 }
             }
         },
@@ -306,27 +306,27 @@
             "replicas": 1,
             "resources": {
                 "requests": {
-                    "cpu": "0.1",
-                    "memory": "200Mi"
+                    "cpu": "2",
+                    "memory": "2Gi"
                 },
                 "limits": {
-                    "cpu": "0.1",
-                    "memory": "200Mi"
+                    "cpu": "2",
+                    "memory": "2Gi"
                 }
             }
         },
         {
             "name": "text-service",
             "namespace": "socialnetwork",
-            "replicas": 16,
+            "replicas": 4,
             "resources": {
                 "requests": {
-                    "cpu": "0.1",
-                    "memory": "200Mi"
+                    "cpu": "2",
+                    "memory": "2Gi"
                 },
                 "limits": {
-                    "cpu": "0.1",
-                    "memory": "200Mi"
+                    "cpu": "2",
+                    "memory": "2Gi"
                 }
             }
         },
@@ -336,42 +336,42 @@
             "replicas": 1,
             "resources": {
                 "requests": {
-                    "cpu": "0.1",
-                    "memory": "200Mi"
+                    "cpu": "2",
+                    "memory": "2Gi"
                 },
                 "limits": {
-                    "cpu": "0.1",
-                    "memory": "200Mi"
+                    "cpu": "2",
+                    "memory": "2Gi"
                 }
             }
         },
         {
             "name": "url-shorten-service",
             "namespace": "socialnetwork",
-            "replicas": 7,
+            "replicas": 1,
             "resources": {
                 "requests": {
-                    "cpu": "0.1",
-                    "memory": "200Mi"
+                    "cpu": "2",
+                    "memory": "2Gi"
                 },
                 "limits": {
-                    "cpu": "0.1",
-                    "memory": "200Mi"
+                    "cpu": "2",
+                    "memory": "2Gi"
                 }
             }
         },
         {
             "name": "user-mention-service",
             "namespace": "socialnetwork",
-            "replicas": 7,
+            "replicas": 1,
             "resources": {
                 "requests": {
-                    "cpu": "0.1",
-                    "memory": "200Mi"
+                    "cpu": "2",
+                    "memory": "2Gi"
                 },
                 "limits": {
-                    "cpu": "0.1",
-                    "memory": "200Mi"
+                    "cpu": "2",
+                    "memory": "2Gi"
                 }
             }
         },
@@ -381,12 +381,12 @@
             "replicas": 1,
             "resources": {
                 "requests": {
-                    "cpu": "0.1",
-                    "memory": "200Mi"
+                    "cpu": "2",
+                    "memory": "2Gi"
                 },
                 "limits": {
-                    "cpu": "0.1",
-                    "memory": "200Mi"
+                    "cpu": "2",
+                    "memory": "2Gi"
                 }
             }
         },
@@ -396,12 +396,12 @@
             "replicas": 1,
             "resources": {
                 "requests": {
-                    "cpu": "0.1",
-                    "memory": "200Mi"
+                    "cpu": "2",
+                    "memory": "2Gi"
                 },
                 "limits": {
-                    "cpu": "0.1",
-                    "memory": "200Mi"
+                    "cpu": "2",
+                    "memory": "2Gi"
                 }
             }
         }
