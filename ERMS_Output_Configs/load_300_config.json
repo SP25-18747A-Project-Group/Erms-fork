@@ -228,7 +228,7 @@
         {
             "name": "compose-post-service",
             "namespace": "socialnetwork",
-            "replicas": 4,
+            "replicas": 8,
             "resources": {
                 "requests": {
                     "cpu": "2",
@@ -318,7 +318,7 @@
         {
             "name": "text-service",
             "namespace": "socialnetwork",
-            "replicas": 3,
+            "replicas": 6,
             "resources": {
                 "requests": {
                     "cpu": "2",
@@ -348,7 +348,7 @@
         {
             "name": "url-shorten-service",
             "namespace": "socialnetwork",
-            "replicas": 1,
+            "replicas": 3,
             "resources": {
                 "requests": {
                     "cpu": "2",
@@ -363,7 +363,7 @@
         {
             "name": "user-mention-service",
             "namespace": "socialnetwork",
-            "replicas": 1,
+            "replicas": 2,
             "resources": {
                 "requests": {
                     "cpu": "2",

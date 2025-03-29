@@ -91,8 +91,8 @@ def run_shell_commands():
         row = ",".join(row)
         # drop elements 0 and 2
         row = row.split(",")
-        if row[1] == 'write-home-timeline-service':
-            row[1] = 'home-timeline-service'
+        if row[1] == "write-home-timeline-service":
+            row[1] = "home-timeline-service"
 
         row = [row[1], int(row[3])]
         # append to dataframe
@@ -113,11 +113,13 @@ if __name__ == "__main__":
     try_again = True
 
     print("Starting with SLA:", sla)
-    while(try_again):
+    while try_again:
         try_again = False
         # iterate from 25 to 700 in steps of 25
         for qps in range(current_qps, 701, 25):
-            with open("./AE/scripts/configs/social-latency-psched-template.yaml", "r") as f:
+            with open(
+                "./AE/scripts/configs/social-latency-psched-template.yaml", "r"
+            ) as f:
                 data = f.read()
                 data = data.replace("!QPS!", f"{qps}")
                 data = data.replace("!SLA!", f"{sla}")
@@ -128,7 +130,9 @@ if __name__ == "__main__":
                 print("Generating values for qps:", qps)
                 ms_replicas: pd.DataFrame = run_shell_commands()
             except subprocess.CalledProcessError as e:
-                print(f"Error occurred while running shell commands for qps:{qps}, trying with higher SLA")
+                print(
+                    f"Error occurred while running shell commands for qps:{qps}, trying with higher SLA"
+                )
                 print(e)
                 # restart the qps loop starting from here with an increased SLA
                 try_again = True
@@ -151,7 +155,7 @@ if __name__ == "__main__":
                 new_dict = {
                     "name": row["microservice"],
                     "namespace": "socialnetwork",
-                    "replicas": max(1, int(row["replicas"] / 4)),
+                    "replicas": max(1, int(row["replicas"] / 2)),
                     "resources": {
                         "requests": {"cpu": "2", "memory": "2Gi"},
                         "limits": {"cpu": "2", "memory": "2Gi"},
@@ -163,11 +167,3 @@ if __name__ == "__main__":
             # write the json file to k8s.json
             with open(f"ERMS_Output_Configs/load_{qps}_config.json", "w") as f:
                 f.write(json.dumps(k8s_json, indent=4))
-    
-
-
-
-# TODO:
-# [] First one is just scaling down the replica counts to fit on the cluster (ie. div number by 4 floor to 1 or something)
-# [] Figure out how to take the traces from HPA / Hand Placed and turn that into resources for the dependency merge
-#    [] 
