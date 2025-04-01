@@ -150,12 +150,34 @@ if __name__ == "__main__":
             # parse the json file
             print(k8s_json.keys())
 
+            # if the sum of the replicas column is > 80, descending sort by replicas,
+            # then decrease replicas by half for each microservice (floor to 1) until the total replicas is <= 80
+            total_replicas = ms_replicas["replicas"].sum()
+            if total_replicas > 80:
+                print("Total replicas (%d) exceeded 80, adjusting replicas..." % total_replicas)
+                # sort by replicas descending
+                ms_replicas = ms_replicas.sort_values(by="replicas", ascending=True)
+                # iterate over rows, div by 2 (floor to 1) until the total replicas is <= 80
+                while total_replicas > 80:
+                    for index, row in ms_replicas.iterrows():
+                        if row["replicas"] > 1:
+                            ms_replicas.at[index, "replicas"] = max(
+                                1, int(row["replicas"] - 1)
+                            )
+                            # recalculate total replicas
+                            total_replicas = ms_replicas["replicas"].sum()
+                        if total_replicas <= 80:
+                            break
+                print("Adjusted replicas to meet the limit of 80. New:")
+                ms_replicas = ms_replicas.sort_index()
+                print(ms_replicas)
+
             for index, row in ms_replicas.iterrows():
                 # create a new dict with the same keys as the json file
                 new_dict = {
                     "name": row["microservice"],
                     "namespace": "socialnetwork",
-                    "replicas": max(1, int(row["replicas"] / 2)),
+                    "replicas": max(1, int(row["replicas"])),
                     "resources": {
                         "requests": {"cpu": "2", "memory": "2Gi"},
                         "limits": {"cpu": "2", "memory": "2Gi"},

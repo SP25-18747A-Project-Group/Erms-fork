@@ -228,7 +228,7 @@
         {
             "name": "compose-post-service",
             "namespace": "socialnetwork",
-            "replicas": 1,
+            "replicas": 2,
             "resources": {
                 "requests": {
                     "cpu": "2",

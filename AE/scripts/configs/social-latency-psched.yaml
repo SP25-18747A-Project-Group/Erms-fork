@@ -31,6 +31,6 @@ cluster_status:
     mem_used: 0
     CPU_aloc: 0
     mem_aloc: 0
-    CPU_cap: 160000
+    CPU_cap: 160000000
     mem_cap: 160000000
   
