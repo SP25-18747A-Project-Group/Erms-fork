@@ -22,9 +22,7 @@ import argparse
 pd.options.mode.chained_assignment = None
 
 
-def read_trace_data(
-    jaeger_trace_file, operation=None, no_nginx=False, no_frontend=False
-):
+def read_trace_data(jaeger_trace_file):
     # subsitute the trace request from offlineprofilingdatacollector
     # with just reading a precollected jaeger trace file
     res = json.loads(jaeger_trace_file)["traces"]
@@ -140,6 +138,7 @@ def read_trace_data(
     # Map each span's processId to its microservice name
     merged_df = merged_df.merge(service_id_mapping, on="traceId")
     merged_df = merged_df.merge(root_spans, on="traceId")
+
     merged_df = merged_df.assign(
         childMS=merged_df.apply(lambda x: x[x["childProcessId"]], axis=1),
         childPod=merged_df.apply(lambda x: x[f"{str(x['childProcessId'])}Pod"], axis=1),
@@ -212,7 +211,8 @@ def tproc_construct_relationship(data: pd.DataFrame, max_edges):
             result = pd.concat([result, pd.DataFrame(first_lvl).transpose()])
             dfs(first_lvl, index + 1)
 
-    data.groupby(["traceId", "traceTime"]).apply(graph_for_trace)
+    glist = ["traceId", "traceTime"]
+    data.groupby(glist).apply(graph_for_trace)
     if len(result) != 0:
         return (
             result[
@@ -247,34 +247,233 @@ def construct_relationship(
     )
 
 
+def _cal_exact_max(data: pd.DataFrame):
+    data = data.groupby("traceId").apply(
+        lambda x: x.groupby("parentId").apply(
+            lambda y: y.assign(
+                exactParentDuration=y["parentDuration"] - y["childDuration"].max()
+            )
+        )
+    )
+    return (
+        data.drop(columns=["traceId", "parentId"]).reset_index().drop(columns="level_2")
+    )
+
+
+def _cal_exact_merge(data: pd.DataFrame):
+    def groupByParentLevel(potentialConflicGrp: pd.DataFrame):
+        conflictionGrp: List[List[int]] = []
+        potentialConflicGrp.apply(
+            findAllConflict,
+            axis=1,
+            conflictionGrp=conflictionGrp,
+            potentialConflicGrp=potentialConflicGrp,
+        )
+
+        childDuration = 0
+        for grp in conflictionGrp:
+            grp = [i for i in grp]
+            conflictChildren = potentialConflicGrp.loc[grp]
+            childDuration += (
+                conflictChildren["endTime"].max() - conflictChildren["startTime"].min()
+            )
+
+        potentialConflicGrp = potentialConflicGrp.assign(
+            exactParentDuration=potentialConflicGrp["parentDuration"] - childDuration
+        )
+
+        return potentialConflicGrp
+
+    def findAllConflict(
+        span, conflictionGrp: List[Set[int]], potentialConflicGrp: pd.DataFrame
+    ):
+        myStart = span["startTime"]
+        myEnd = span["endTime"]
+        """
+        Three different types of confliction
+                -------------------
+                |     ThisSpan    |
+                -------------------
+        ---------------------
+        |     OtherSpan     |
+        ---------------------
+        """
+        conditionOne = (potentialConflicGrp["startTime"] < myStart) & (
+            myStart < potentialConflicGrp["endTime"]
+        )
+        """
+        ------------------
+        |    ThisSpan    |
+        ------------------
+                ---------------------
+                |     OtherSpan     |
+                ---------------------
+        """
+        conditionTwo = (potentialConflicGrp["startTime"] < myEnd) & (
+            myEnd < potentialConflicGrp["endTime"]
+        )
+        """
+        ------------------------------
+        |          ThisSpan          |
+        ------------------------------
+            ---------------------
+            |     OtherSpan     |
+            ---------------------
+        """
+        conditionThree = (myStart < potentialConflicGrp["startTime"]) & (
+            myEnd > potentialConflicGrp["endTime"]
+        )
+        confliction = potentialConflicGrp.loc[
+            conditionOne | conditionTwo | conditionThree
+        ].index.to_list()
+        confliction.append(span.name)
+        correspondingGroup = set()
+        for group in conflictionGrp:
+            founded = False
+            for index in confliction:
+                if index in group:
+                    correspondingGroup = group
+                    founded = True
+                    break
+            if founded:
+                break
+        for index in confliction:
+            correspondingGroup.add(index)
+        if not correspondingGroup in conflictionGrp:
+            conflictionGrp.append(correspondingGroup)
+
+    data = data.groupby("traceId").apply(
+        lambda x: x.groupby("parentId").apply(groupByParentLevel)
+    )
+
+    data = (
+        data.drop(columns=["traceId", "parentId"]).reset_index().drop(columns="level_2")
+    )
+
+    data = data.astype({"exactParentDuration": float, "childDuration": float})
+    data = data.loc[data["exactParentDuration"] > 0]
+
+    return data
+
+
+def exact_parent_duration(data: pd.DataFrame, method):
+    if method == "merge":
+        return _cal_exact_merge(data)
+    elif method == "max":
+        return _cal_exact_max(data)
+
+
+def decouple_parent_and_child(data: pd.DataFrame, percentile=0.95):
+    parent_perspective = data.groupby(["parentMS", "parentPod"])[
+        "exactParentDuration"
+    ].quantile(percentile)
+    parent_perspective.index.names = ["microservice", "pod"]
+    child_perspective = data.groupby(["childMS", "childPod"])["childDuration"].quantile(
+        percentile
+    )
+    child_perspective.index.names = ["microservice", "pod"]
+    quantiled = pd.concat([parent_perspective, child_perspective])
+    quantiled = quantiled[~quantiled.index.duplicated(keep="first")]
+    # Parse the serie to a data frame
+    data = quantiled.to_frame(name="latency")
+    data = data.reset_index()
+    return data
+
+
+def process_span_data(span_data: pd.DataFrame):
+    db_data = pd.DataFrame()
+    span_data = exact_parent_duration(span_data, "merge")
+    p95_df = decouple_parent_and_child(span_data, 0.95)
+    p50_df = decouple_parent_and_child(span_data, 0.5)
+    return (
+        p50_df.rename(columns={"latency": "median"}).merge(
+            p95_df, on=["microservice", "pod"]
+        ),
+        db_data,
+    )
+
+
+def append_data(data: pd.DataFrame, data_path):
+    """This method is used to write data to a file, if the file is exist,
+    it will append data to the end, otherwise it will create a new file.
+
+    Args:
+        data (pd.DataFrame): Data to save
+        data_path (str): Path to the file
+    """
+    if not os.path.exists(data_path):
+        open(data_path, "w").close()
+    is_empty = os.path.getsize(data_path) == 0
+    data.to_csv(data_path, index=False, mode="a", header=is_empty)
+
+
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser(description="Process Jaeger trace data.")
     parser.add_argument(
-        "--inputJaegerTrace",
+        "--jaegerTraceDir",
         type=str,
         required=True,
-        help="Path to the input Jaeger trace JSON file",
+        help="Path to the directory containing Jaeger trace files",
     )
     args = parser.parse_args()
 
-    jaeger_trace_data = None
-    success, span_data, _ = (None, None, None)
-    try:
-        with open(args.inputJaegerTrace, "r") as trace_file:
-            jaeger_trace_data = trace_file.read()
-        success, span_data, _ = read_trace_data(jaeger_trace_data)
-        if success:
-            print("Trace data processed successfully.")
-            print(span_data)
-        else:
-            print("Failed to process trace data.")
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        traceback.print_exc()
+    # get all the files in the trace dir into a list
+    jaeger_trace_files = []
+    for root, dirs, files in os.walk(args.jaegerTraceDir):
+        for file in files:
+            if file.endswith(".json"):
+                jaeger_trace_files.append(os.path.join(root, file))
 
     max_edges = {}
     relation_df = {}
-    service = ["ComposePost", "UserTimeline", "HomeTimeline"]
-    for svc in service:
-        construct_relationship(span_data, max_edges, relation_df, svc)
+    for jaeger_trace_file in jaeger_trace_files:
+        jaeger_trace_data = None
+        success, span_data, _ = (None, None, None)
+        try:
+            with open(jaeger_trace_file, "r") as trace_file:
+                jaeger_trace_data = trace_file.read()
+            success, span_data, _ = read_trace_data(jaeger_trace_data)
+            if success:
+                print("Trace data processed successfully.")
+                print(span_data)
+            else:
+                print("Failed to process trace data.")
+        except Exception as e:
+            print(f"An error occurred: {e}, skipping this trace file.")
+            continue
+            traceback.print_exc()
+
+        service = ["ComposePost", "UserTimeline", "HomeTimeline"]
+        for svc in service:
+            construct_relationship(span_data, max_edges, relation_df, svc)
+            latency_by_pod, db_data = process_span_data(span_data)
+
+            # add a cpu usage and mem usage columns zeroed out
+            latency_by_pod = latency_by_pod.assign(cpuUsage=2, memUsage=2)
+
+            print("Latency By Pod:")
+            print(latency_by_pod)
+            print("DB Data:")
+            print(db_data)
+            append_data(db_data.assign(service=svc), "db.csv")
+            deployments = (
+                latency_by_pod["pod"]
+                .apply(lambda x: "-".join(str(x).split("-")[:-2]))
+                .unique()
+                .tolist()
+            )
+            print("Deployments:")
+            print(deployments)
+            latency_by_pod = latency_by_pod.assign(
+                repeat=0,
+                service=svc,
+                cpuInter=0,
+                memInter=0,
+                targetReqFreq=1,
+                reqFreq=1,
+            )
+            append_data(latency_by_pod, f"latencyByPod.csv")
+
+        print(f"Finished Trace file {jaeger_trace_file}")
+        # skipping cpu/mem usage
