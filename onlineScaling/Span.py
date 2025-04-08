@@ -53,16 +53,16 @@ class Span:
         if self.microservice in models:
             self.model = models[self.microservice]
             if 'a1' not in self.model:
-                self.model['a1'] = float(0)
+                self.model['a1'] = float(1)
             
             if 'b1' not in self.model:
-                self.model['b1'] = float(0)
+                self.model['b1'] = float(1)
             
             if 'a2' not in self.model:
-                self.model['a2'] = float(0)
+                self.model['a2'] = float(1)
 
             if 'b2' not in self.model:
-                self.model['b2'] = float(0)
+                self.model['b2'] = float(1)
 
             self.model["inflection"] = (self.model["b2"] - self.model["b1"]) / (
                 self.model["a1"] - self.model["a2"]
