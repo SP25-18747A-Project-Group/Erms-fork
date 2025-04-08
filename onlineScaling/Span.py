@@ -52,6 +52,18 @@ class Span:
     def assign_model(self, models):
         if self.microservice in models:
             self.model = models[self.microservice]
+            if 'a1' not in self.model:
+                self.model['a1'] = float(0)
+            
+            if 'b1' not in self.model:
+                self.model['b1'] = float(0)
+            
+            if 'a2' not in self.model:
+                self.model['a2'] = float(0)
+
+            if 'b2' not in self.model:
+                self.model['b2'] = float(0)
+
             self.model["inflection"] = (self.model["b2"] - self.model["b1"]) / (
                 self.model["a1"] - self.model["a2"]
             )

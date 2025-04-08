@@ -301,7 +301,7 @@ class Fitting:
 
     def microserviceLatencyReqFitting(self, data):
         result = Box({"a": 0, "b": 0, "accy": 0})
-        popt, _ = curve_fit(linear, data["reqFreq"], data["latency"])
+        popt, _ = curve_fit(linear, data["reqFreq"].values, data["latency"].values)
         result.a = popt[0]
         result.b = popt[1]
         result.accy = self.calulate_accuracy(
@@ -765,7 +765,7 @@ class Fitting:
         # Take mean of latency of each pod
         self.dataDF = (
             self.dataDF.groupby(
-                ["service", "microservice", "cpuInter", "memInter", "reqFreq"]
+                ["service", "microservice", "pod", "cpuInter", "memInter", "reqFreq"]
             )
             .quantile(0.5)
             .reset_index()

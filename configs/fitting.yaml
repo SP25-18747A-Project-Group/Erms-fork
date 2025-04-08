@@ -1,8 +1,8 @@
 # Data preprocessing
 cpu_limits:
-  lower: 0.1
-  higher: 0.9
-min_of_max_cpu: 0.6
+  lower: 0
+  higher: 3
+min_of_max_cpu: 0
 acceptable_throughtput_error_rate: 0.3
 throughput_classification_precision:
   Recommendation: 28
@@ -31,15 +31,15 @@ cutoff_range:
     step: 4
   UserTimeline:
     min: 14
-    max: 126
+    max: 50000
     step: 7
   ComposePost:
     min: 8
-    max: 72
+    max: 50000
     step: 4
   HomeTimeline:
     min: 12
-    max: 108
+    max: 50000
     step: 6
   A:
     min: 0

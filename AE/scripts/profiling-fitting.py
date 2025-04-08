@@ -51,7 +51,7 @@ if __name__ == "__main__":
     figure_path = f"{data_path}/figures"
     cpu_limits = {
         "hotel-reserv": {"lower": 0.2, "higher": 0.9},
-        "social-network": {"lower": 0.2, "higher": 0.9},
+        "social-network": {"lower": 0, "higher": 1},
         "media-microsvc": {"lower": 0.2, "higher": 0.9},
     }[args.app]
 

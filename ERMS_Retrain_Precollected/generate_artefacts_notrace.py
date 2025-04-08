@@ -428,6 +428,7 @@ if __name__ == "__main__":
     max_edges = {}
     relation_df = {}
     for jaeger_trace_file in jaeger_trace_files:
+        trace_rps = jaeger_trace_file.split("_")[-1].split(".")[0]
         jaeger_trace_data = None
         success, span_data, _ = (None, None, None)
         try:
@@ -470,8 +471,8 @@ if __name__ == "__main__":
                 service=svc,
                 cpuInter=0,
                 memInter=0,
-                targetReqFreq=1,
-                reqFreq=1,
+                targetReqFreq=float(int(trace_rps)),
+                reqFreq=float(int(trace_rps)),
             )
             append_data(latency_by_pod, f"latencyByPod.csv")
 
