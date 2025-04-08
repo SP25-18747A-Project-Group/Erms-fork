@@ -150,7 +150,7 @@ if __name__ == "__main__":
             # parse the json file
             print(k8s_json.keys())
 
-            # if the sum of the replicas column is > 80, descending sort by replicas,
+            # if the sum of the replicas column is > 80 (cluster capacity), descending sort by replicas,
             # then decrease replicas by half for each microservice (floor to 1) until the total replicas is <= 80
             total_replicas = ms_replicas["replicas"].sum()
             if total_replicas > 80:
