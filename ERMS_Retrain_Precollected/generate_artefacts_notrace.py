@@ -242,9 +242,15 @@ def construct_relationship(
     )
     if relation_result:
         _relation_df[_service], max_edges[_service] = relation_result
+    
     pd.concat([x[1] for x in _relation_df.items()]).to_csv(
         f"./spanRelationships.csv", index=False
     )
+
+    # read the generated CSV back into a dataframe, add a step column, set every row to 1 in that step column, write it back
+    span_relationships = pd.read_csv(f"./spanRelationships.csv")
+    span_relationships["step"] = 1
+    span_relationships.to_csv(f"./spanRelationships.csv", index=False)
 
 
 def _cal_exact_max(data: pd.DataFrame):
