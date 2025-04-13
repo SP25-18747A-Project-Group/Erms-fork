@@ -9,3 +9,5 @@ ref
 venv
 dev
 log
+ERMS_Retrain_Precollected/traces/**
+ERMS_Retrain_Precollected/dbg/**

@@ -12,30 +12,30 @@ prometheus_host: http://localhost:30090
 nodes_for_infra:
 - izj6c4ghaaduar69lb5hlsz
 pod_spec:
-  cpu_size: 0.1
-  mem_size: 200Mi
+  cpu_size: 2
+  mem_size: 2048Mi
 
 replicas:
   ComposeReview:
-    nginx-web-server: 10
-    compose-review-service: 3
-    movie-id-service: 2
+    nginx-web-server: 1
+    compose-review-service: 1
+    movie-id-service: 1
   Search:
-    frontend: 6
-    reservation: 3
-    search: 2
+    frontend: 1
+    reservation: 1
+    search: 1
   Recommendation:
-    frontend: 8
-    profile: 5
-    recommendation: 2
+    frontend: 1
+    profile: 1
+    recommendation: 1
   ComposePost:
-    nginx-thrift: 30
-    compose-post-service: 3
+    nginx-thrift: 1
+    compose-post-service: 1
     text-service: 1
   UserTimeline:
-    nginx-thrift: 30
-    user-timeline-service: 2
-    post-storage-service: 6
+    nginx-thrift: 1
+    user-timeline-service: 1
+    post-storage-service: 1
   HomeTimeline:
-    nginx-thrift: 30
-    post-storage-service: 3
+    nginx-thrift: 1
+    post-storage-service: 1
